@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Airbag - Fotos Oficiales | Rock Argentino</title>
+    <meta name="description" content="Galería oficial de fotos de Airbag - Conciertos, estudio, backstage y momentos únicos de la banda argentina de rock">
+    <meta name="keywords" content="Airbag, rock argentino, galería, fotos, conciertos, banda">
+    <meta name="author" content="Airbag Official">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Galería Airbag - Fotos Oficiales">
+    <meta property="og:description" content="Explora la galería oficial de Airbag con fotos de conciertos, estudio y momentos únicos">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://example.com/airbag-gallery-preview.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'airbag-red': '#a3223a',
+                        'airbag-gold': '#f2c94c',
+                        'airbag-dark': '#333333'
+                    },
+                    fontFamily: {
+                        'rock': ['Impact', 'Arial Black', 'sans-serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* Custom animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .photo-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(163, 34, 58, 0.4);
+        }
+        
+        .photo-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+        
+        .photo-image {
+            transition: transform 0.4s ease;
+        }
+        
+        .photo-card:hover .photo-image {
+            transform: scale(1.1);
+        }
+        
+        .lightbox {
+            backdrop-filter: blur(15px);
+            animation: lightboxFadeIn 0.4s ease-out;
+        }
+        
+        @keyframes lightboxFadeIn {
+            from { 
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            to { 
+                opacity: 1;
+                backdrop-filter: blur(15px);
+            }
+        }
+        
+        .lightbox-content {
+            animation: lightboxSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes lightboxSlideIn {
+            from { 
+                opacity: 0;
+                transform: scale(0.8) translateY(40px);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .filter-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(242, 201, 76, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #a3223a, #f2c94c);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(163, 34, 58, 0.4);
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Accessibility improvements */
+        .focus-visible:focus {
+            outline: 2px solid #f2c94c;
+            outline-offset: 2px;
+        }
+        
+        /* Performance optimizations */
+        .photo-card img {
+            will-change: transform;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in,
+            .photo-card,
+            .photo-overlay,
+            .photo-image,
+            .filter-btn {
+                transition: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-airbag-gold text-black px-4 py-2 rounded-lg z-50">
+        Saltar al contenido principal
+    </a>
+
+    <!-- Navigation -->
+   <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
+                    
+                </div>                
+                <button id="mobileMenuBtn" class="md:hidden p-2">
+                    <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+                        <div class="w-full h-0.5 bg-white"></div>
+                        <div class="w-full h-0.5 bg-white"></div>
+                        <div class="w-full h-0.5 bg-white"></div>
+                    </div>
+                </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="pt-24 pb-16 bg-gradient-to-b from-airbag-dark via-black to-black" aria-labelledby="hero-title">
+            <div class="container mx-auto px-6 text-center">
+                <h1 id="hero-title" class="text-5xl md:text-7xl font-rock text-airbag-red mb-6 fade-in">
+                    GALERÍA OFICIAL
+                </h1>
+                <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-3xl mx-auto fade-in">
+                    Revive los momentos más intensos de más de 20 años de rock argentino
+                </p>
+                <div class="fade-in">
+                    <span class="inline-block px-6 py-3 bg-airbag-red/20 border border-airbag-red/50 rounded-full text-airbag-gold">
+                        <span id="photo-count">0</span> fotos disponibles
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="py-12 bg-gradient-to-b from-black to-airbag-dark/30" aria-labelledby="filters-title">
+            <div class="container mx-auto px-6">
+                <h2 id="filters-title" class="sr-only">Filtros de categoría</h2>
+                <div class="flex flex-wrap justify-center gap-4 fade-in" role="group" aria-label="Filtros de fotos">
+                    <button 
+                        onclick="filterPhotos('all')" 
+                        class="filter-btn px-8 py-4 rounded-full bg-airbag-dark text-white font-semibold focus-visible active"
+                        aria-pressed="true"
+                        data-category="all">
+                        Todas las fotos
+                    </button>
+                    <button 
+                        onclick="filterPhotos('conciertos')" 
+                        class="filter-btn px-8 py-4 rounded-full bg-airbag-dark text-white font-semibold focus-visible"
+                        aria-pressed="false"
+                        data-category="conciertos">
+                        🎸 Conciertos
+                    </button>
+                    <button 
+                        onclick="filterPhotos('estudio')" 
+                        class="filter-btn px-8 py-4 rounded-full bg-airbag-dark text-white font-semibold focus-visible"
+                        aria-pressed="false"
+                        data-category="estudio">
+                        🎤 Estudio
+                    </button>
+                    <button 
+                        onclick="filterPhotos('fans')" 
+                        class="filter-btn px-8 py-4 rounded-full bg-airbag-dark text-white font-semibold focus-visible"
+                        aria-pressed="false"
+                        data-category="fans">
+                        👥 Fans
+                    </button>
+                    <button 
+                        onclick="filterPhotos('backstage')" 
+                        class="filter-btn px-8 py-4 rounded-full bg-airbag-dark text-white font-semibold focus-visible"
+                        aria-pressed="false"
+                        data-category="backstage">
+                        🎭 Backstage
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Grid -->
+        <section class="py-16 bg-black" aria-labelledby="gallery-title">
+            <div class="container mx-auto px-6">
+                <h2 id="gallery-title" class="sr-only">Galería de fotos</h2>
+                
+                <!-- Loading State -->
+                <div id="loading" class="text-center py-16">
+                    <div class="loading-spinner w-12 h-12 border-4 border-airbag-red border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-airbag-gold">Cargando fotos...</p>
+                </div>
+
+                <!-- Photo Grid -->
+                <div id="photoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden" role="grid" aria-label="Galería de fotos de Airbag">
+                    <!-- Photos will be generated by JavaScript -->
+                </div>
+
+                <!-- No Results -->
+                <div id="noResults" class="text-center py-16 hidden">
+                    <div class="text-6xl mb-4">📷</div>
+                    <h3 class="text-2xl font-bold text-airbag-gold mb-4">No se encontraron fotos</h3>
+                    <p class="text-gray-400">Intenta con otra categoría</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" 
+         class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4 lightbox"
+         role="dialog" 
+         aria-modal="true" 
+         aria-labelledby="lightbox-title"
+         aria-describedby="lightbox-description">
+        
+        <div class="relative max-w-6xl w-full lightbox-content">
+            <!-- Navigation Buttons -->
+            <button id="prevBtn" 
+                    onclick="navigatePhoto(-1)" 
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-airbag-red/80 hover:bg-airbag-red rounded-full flex items-center justify-center text-white font-bold transition-all focus-visible"
+                    aria-label="Foto anterior">
+                
+            </button>
+            
+            <button id="nextBtn" 
+                    onclick="navigatePhoto(1)" 
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-airbag-red/80 hover:bg-airbag-red rounded-full flex items-center justify-center text-white font-bold transition-all focus-visible"
+                    aria-label="Foto siguiente">
+                ›
+            </button>
+
+            <!-- Close Button -->
+            <button onclick="closeLightbox()" 
+                    class="absolute top-4 right-4 z-10 w-12 h-12 bg-airbag-red/80 hover:bg-airbag-red rounded-full flex items-center justify-center text-white font-bold transition-all focus-visible"
+                    aria-label="Cerrar galería">
+                ✕
+            </button>
+            
+            <!-- Lightbox Content -->
+            <div class="bg-gradient-to-br from-airbag-dark to-black rounded-lg overflow-hidden">
+                <div id="lightboxImageContainer" class="relative">
+                    <img id="lightboxImage" 
+                         src="" 
+                         alt="" 
+                         class="w-full h-64 md:h-96 lg:h-[32rem] object-cover">
+                    <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                        <span id="photoCounter">1 / 1</span>
+                    </div>
+                </div>
+                <div class="p-6 md:p-8">
+                    <h3 id="lightbox-title" class="text-2xl md:text-3xl font-bold text-airbag-gold mb-4">Título de la foto</h3>
+                    <p id="lightbox-description" class="text-gray-300 leading-relaxed text-lg">Descripción de la foto</p>
+                    <div class="mt-6 flex items-center justify-between">
+                        <span id="lightboxCategory" class="px-4 py-2 bg-airbag-red/20 border border-airbag-red/50 rounded-full text-airbag-gold text-sm">
+                            Categoría
+                        </span>
+                        <div class="text-sm text-gray-400">
+                            Usa las flechas del teclado para navegar
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-airbag-dark py-12 border-t border-airbag-red/30">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-rock text-airbag-red mb-4">AIRBAG</div>
+            <p class="text-gray-400 mb-6">Galería oficial de la banda</p>
+            <p class="text-gray-500 text-sm">© 2025 Airbag. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Photo data with high-quality descriptions
+        const photos = [
+            {
+                id: 1,
+                category: 'conciertos',
+                title: 'Luna Park 2024 - Noche Épica',
+                description: 'Una noche histórica en el Luna Park de Buenos Aires donde Airbag demostró por qué son una de las bandas más importantes del rock argentino contemporáneo. La energía del público y la banda crearon una atmósfera única e irrepetible.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23a3223a" width="800" height="600"/><circle fill="%23f2c94c" opacity="0.3" cx="400" cy="300" r="150"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎸</text></svg>',
+                alt: 'Concierto de Airbag en Luna Park con luces rojas y doradas'
+            },
+            {
+                id: 2,
+                category: 'estudio',
+                title: 'Grabando "El Club de la Pelea I"',
+                description: 'Los hermanos Sardelli en el estudio de grabación trabajando en su más reciente álbum. Este proceso creativo captura la esencia de 25 años de trayectoria musical, combinando experiencia con innovación sonora.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23333333" width="800" height="600"/><circle fill="%23f2c94c" opacity="0.4" cx="200" cy="200" r="100"/><circle fill="%23a3223a" opacity="0.3" cx="600" cy="400" r="120"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎤</text></svg>',
+                alt: 'Sesión de grabación en estudio con equipos profesionales'
+            },
+            {
+                id: 3,
+                category: 'fans',
+                title: 'Cosquín Rock - Multitud Eufórica',
+                description: 'La pasión incondicional de los fans de Airbag se hace evidente en cada concierto. En Cosquín Rock, miles de voces se unieron para cantar los clásicos que han marcado generaciones enteras de seguidores.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23000000" width="800" height="600"/><circle fill="%23a3223a" opacity="0.2" cx="150" cy="150" r="80"/><circle fill="%23f2c94c" opacity="0.2" cx="650" cy="200" r="90"/><circle fill="%23a3223a" opacity="0.2" cx="400" cy="450" r="100"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">👥</text></svg>',
+                alt: 'Multitud de fans cantando en un concierto de Airbag'
+            },
+            {
+                id: 4,
+                category: 'backstage',
+                title: 'Preparación Pre-Show',
+                description: 'Momentos íntimos antes de salir al escenario donde se puede sentir la concentración, los nervios y la energía acumulada. Estos rituales previos son fundamentales para la conexión que luego se establece con el público.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%231a1a1a" width="800" height="600"/><rect fill="%23333333" x="100" y="100" width="600" height="400" rx="20"/><circle fill="%23f2c94c" opacity="0.3" cx="400" cy="300" r="80"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎭</text></svg>',
+                alt: 'Banda preparándose en el backstage antes del concierto'
+            },
+            {
+                id: 5,
+                category: 'conciertos',
+                title: 'Guido Sardelli - Maestría en Batería',
+                description: 'Guido Sardelli demostrando su virtuosismo en la batería durante un concierto memorable en Córdoba. Su técnica impecable y energía contagiosa son pilares fundamentales del sonido característico de Airbag.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%232d1b69" width="800" height="600"/><circle fill="%23a3223a" opacity="0.4" cx="400" cy="300" r="200"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🥁</text></svg>',
+                alt: 'Guido Sardelli tocando la batería en vivo con luces dramáticas'
+            },
+            {
+                id: 6,
+                category: 'estudio',
+                title: 'Sesión de Composición Familiar',
+                description: 'Los tres hermanos Sardelli trabajando juntos en nuevas canciones, donde la química familiar se convierte en magia musical. Este proceso colaborativo ha sido la clave del éxito sostenido de la banda a lo largo de los años.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%230f4c75" width="800" height="600"/><rect fill="%23333333" opacity="0.8" x="50" y="150" width="700" height="300" rx="15"/><circle fill="%23f2c94c" opacity="0.5" cx="400" cy="300" r="100"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎵</text></svg>',
+                alt: 'Los hermanos Sardelli componiendo música en el estudio'
+            },
+            {
+                id: 7,
+                category: 'conciertos',
+                title: 'Personal Fest 2019 - Momento Histórico',
+                description: 'Una presentación memorable en el Personal Fest donde Airbag demostró su capacidad para conquistar grandes audiencias. Este concierto marcó un antes y después en la carrera de la banda, consolidándolos como headliners.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%234a148c" width="800" height="600"/><polygon fill="%23a3223a" opacity="0.3" points="400,100 600,300 400,500 200,300"/><circle fill="%23f2c94c" opacity="0.4" cx="400" cy="300" r="80"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🌟</text></svg>',
+                alt: 'Presentación estelar de Airbag en Personal Fest con efectos de luces'
+            },
+            {
+                id: 8,
+                category: 'fans',
+                title: 'Coro Masivo - Voces Unidas',
+                description: 'El momento mágico cuando banda y público se unen en una sola voz, cantando los clásicos que han marcado generaciones. Esta conexión emocional es lo que hace únicos los conciertos de Airbag.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23831843" width="800" height="600"/><circle fill="%23f2c94c" opacity="0.2" cx="200" cy="200" r="60"/><circle fill="%23f2c94c" opacity="0.2" cx="600" cy="200" r="60"/><circle fill="%23f2c94c" opacity="0.2" cx="400" cy="400" r="80"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎶</text></svg>',
+                alt: 'Público cantando al unísono durante un concierto de Airbag'
+            },
+            {
+                id: 9,
+                category: 'backstage',
+                title: 'Encuentro con Colegas Músicos',
+                description: 'Airbag compartiendo momentos con otros grandes del rock argentino, fortaleciendo los lazos de la escena musical nacional. Estos encuentros han resultado en colaboraciones memorables y amistades duraderas.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23134e4a" width="800" height="600"/><rect fill="%23f2c94c" opacity="0.2" x="150" y="200" width="500" height="200" rx="25"/><circle fill="%23a3223a" opacity="0.3" cx="400" cy="300" r="60"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🤝</text></svg>',
+                alt: 'Airbag reunido con otros músicos del rock argentino'
+            },
+            {
+                id: 10,
+                category: 'conciertos',
+                title: 'Energía Pura en Vivo',
+                description: 'La intensidad y pasión que caracteriza cada presentación en vivo de Airbag, conectando directamente con el corazón del público. Esta energía raw es lo que ha mantenido a la banda relevante durante más de dos décadas.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23c2410c" width="800" height="600"/><polygon fill="%23f2c94c" opacity="0.4" points="400,150 500,250 450,350 350,350 300,250"/><circle fill="%23a3223a" opacity="0.5" cx="400" cy="300" r="100"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🔥</text></svg>',
+                alt: 'Momento de máxima energía durante un concierto en vivo'
+            },
+            {
+                id: 11,
+                category: 'estudio',
+                title: 'Patricio - Experimentación Sonora',
+                description: 'Patricio Sardelli explorando nuevos sonidos y texturas que enriquecen el universo musical de la banda. Su visión artística y liderazgo creativo han sido fundamentales en la evolución sonora de Airbag.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%236b21a8" width="800" height="600"/><rect fill="%23333333" opacity="0.7" x="100" y="200" width="600" height="200" rx="20"/><circle fill="%23f2c94c" opacity="0.6" cx="400" cy="300" r="70"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">🎹</text></svg>',
+                alt: 'Patricio Sardelli experimentando con nuevos sonidos en el estudio'
+            },
+            {
+                id: 12,
+                category: 'fans',
+                title: 'Amor Incondicional de los Fans',
+                description: 'El cariño y la devoción de los fans de Airbag, que han acompañado a la banda durante más de dos décadas de carrera. Esta lealtad inquebrantable es el motor que impulsa a la banda a seguir creando música.',
+                src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23881337" width="800" height="600"/><heart fill="%23f2c94c" opacity="0.3"/><circle fill="%23a3223a" opacity="0.2" cx="300" cy="200" r="80"/><circle fill="%23f2c94c" opacity="0.2" cx="500" cy="400" r="90"/><text x="400" y="320" text-anchor="middle" fill="white" font-size="80">❤️</text></svg>',
+                alt: 'Fans mostrando su amor y apoyo incondicional a Airbag'
+            }
+        ];
+
+        // Global variables
+        let currentFilter = 'all';
+        let currentPhotoIndex = 0;
+        let filteredPhotos = [...photos];
+        let observer;
+
+        // Initialize the gallery
+        function initGallery() {
+            setupIntersectionObserver();
+            generatePhotoGrid();
+            updatePhotoCount();
+            setupKeyboardNavigation();
+            
+            // Hide loading state
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('photoGrid').classList.remove('hidden');
+                triggerAnimations();
+            }, 1000);
+        }
+
+        // Setup Intersection Observer for animations
+        function setupIntersectionObserver() {
+            const options = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+        }
+
+        // Generate photo grid
+        function generatePhotoGrid(photosToShow = photos) {
+            const grid = document.getElementById('photoGrid');
+            grid.innerHTML = '';
+
+            photosToShow.forEach((photo, index) => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card bg-airbag-dark rounded-xl overflow-hidden fade-in';
+                photoCard.setAttribute('role', 'gridcell');
+                photoCard.setAttribute('tabindex', '0');
+                photoCard.dataset.category = photo.category;
+                photoCard.dataset.index = index;
+                
+                photoCard.innerHTML = `
+                    <div class="relative overflow-hidden">
+                        <img src="${photo.src}" 
+                             alt="${photo.alt}" 
+                             class="photo-image w-full h-64 md:h-72 object-cover"
+                             loading="lazy">
+                        <div class="photo-overlay absolute inset-0 flex items-end">
+                            <div class="p-6 w-full">
+                                <h3 class="text-white font-bold text-lg mb-2">${photo.title}</h3>
+                                <span class="inline-block px-3 py-1 bg-airbag-red/80 rounded-full text-xs text-white">
+                                    ${getCategoryName(photo.category)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Event listeners
+                photoCard.addEventListener('click', () => openLightbox(index));
+                photoCard.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+                
+                grid.appendChild(photoCard);
+            });
+
+            // Update filtered photos array
+            filteredPhotos = photosToShow;
+        }
+
+        // Get category display name
+        function getCategoryName(category) {
+            const names = {
+                'conciertos': 'Conciertos',
+                'estudio': 'Estudio',
+                'fans': 'Fans',
+                'backstage': 'Backstage'
+            };
+            return names[category] || category;
+        }
+
+        // Filter photos by category
+        function filterPhotos(category) {
+            currentFilter = category;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const isActive = btn.dataset.category === category;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive.toString());
+            });
+
+            // Filter photos
+            const photosToShow = category === 'all' ? photos : photos.filter(photo => photo.category === category);
+            
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (photosToShow.length === 0) {
+                document.getElementById('photoGrid').classList.add('hidden');
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                document.getElementById('photoGrid').classList.remove('hidden');
+                generatePhotoGrid(photosToShow);
+                triggerAnimations();
+            }
+            
+            updatePhotoCount();
+        }
+
+        // Update photo count
+        function updatePhotoCount() {
+            const count = currentFilter === 'all' ? photos.length : photos.filter(p => p.category === currentFilter).length;
+            document.getElementById('photo-count').textContent = count;
+        }
+
+        // Trigger fade-in animations
+        function triggerAnimations() {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+                    observer.observe(el);
+                });
+            }, 100);
+        }
+
+        // Open lightbox
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            const photo = filteredPhotos[index];
+            
+            if (!photo) return;
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+            const lightboxCategory = document.getElementById('lightboxCategory');
+            const photoCounter = document.getElementById('photoCounter');
+
+            // Update content
+            lightboxImage.src = photo.src;
+            lightboxImage.alt = photo.alt;
+            lightboxTitle.textContent = photo.title;
+            lightboxDescription.textContent = photo.description;
+            lightboxCategory.textContent = getCategoryName(photo.category);
+            photoCounter.textContent = `${index + 1} / ${filteredPhotos.length}`;
+
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            prevBtn.style.display = filteredPhotos.length > 1 ? 'flex' : 'none';
+            nextBtn.style.display = filteredPhotos.length > 1 ? 'flex' : 'none';
+
+            // Show lightbox
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus management
+            lightbox.focus();
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navigate between photos in lightbox
+        function navigatePhoto(direction) {
+            const newIndex = currentPhotoIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < filteredPhotos.length) {
+                openLightbox(newIndex);
+            }
+        }
+
+        // Setup keyboard navigation
+        function setupKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                const lightbox = document.getElementById('lightbox');
+                if (!lightbox.classList.contains('hidden')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            navigatePhoto(-1);
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            navigatePhoto(1);
+                            break;
+                    }
+                }
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initGallery);
+
+        // Close lightbox on background click
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

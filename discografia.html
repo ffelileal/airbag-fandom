@@ -68,7 +68,7 @@
                     <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
                     <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
                     <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
                     
                 </div>                
                 <button id="mobileMenuBtn" class="md:hidden p-2">
@@ -88,7 +88,7 @@
                     <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
                     <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
                     <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
                 </div>
             </div>
         </div>
@@ -97,14 +97,11 @@
 
     <!-- Hero Section -->
     <section 
-  id="home" 
-  class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-center bg-fixed" 
-  style="
-    background-image: 
+    id="home" 
+    class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-center bg-fixed" 
+    style="background-image: 
       linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)),
-      url('assets/fotos/artistas/airbag.webp');
-  "
->
+      url('assets/fotos/artistas/airbag.webp');">
     <!-- Contenido principal -->
     <div class="text-center z-10 slide-in">
             <!-- Logo en lugar del texto AIRBAG -->
@@ -148,59 +145,47 @@
 </div>
 
 <script>
-  // Navigation functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-        
-        // Smooth scrolling for navigation links
-        const navLinks = document.querySelectorAll('a[href^="#"]');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (mobileMenu) mobileMenu.classList.add('hidden');
-                    
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(navLink => {
-                        navLink.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+    
+    // Smooth scrolling for navigation links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+            }
         });
     });
-  const albums = [
-    { imgSrc: '/assets/fotos/albumnes/airbag.jpeg', title: 'Airbag (2004)', desc: 'El álbum debut con "La Última Vez"', bullets: ['Establecimiento en el rock argentino','Producción independiente','Base de fans inicial'], tracks: ['La Última Vez', 'A Whole New World'] },
-    { imgSrc: '/assets/fotos/albumnes/blanco_y_negro.jpg', title: 'Blanco y Negro (2006)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['Tema 1', 'Tema 2'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'Una Hora a Tokyo (2008)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
-    { imgSrc: '/assets/fotos/albumnes/airbag.jpeg', title: 'Voragine (2011)', desc: 'El álbum debut con "La Última Vez"', bullets: ['Establecimiento en el rock argentino','Producción independiente','Base de fans inicial'], tracks: ['La Última Vez', 'A Whole New World'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'libertad (2013)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
-    { imgSrc: '/assets/fotos/albumnes/mentira.jpeg', title: 'Mentira La Verdad (2016)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['Tema 1', 'Tema 2'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'Al Parecer Todo Ha Sido una Trampa (2021)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'El Club De La Pelea I (2025)', desc: 'El utlimo album sacado  modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['No COnfies En Tu Suerte', 'Track B'], links: { spotify: 'https://open.spotify.com/intl-es/album/2tS4bTMTcGhnQSFp4rmflf?si=7YIRK7OKTOCrOLIJ-AGCUQ', youtube: 'https://youtube.com/playlist?list=PLxA687tYuMWjSg-z5T1XLobZGe7BAkr--&si=p_M8UyfMGqZ4_WrF', apple: 'https://music.apple.com/ec/album/el-club-de-la-pelea-i/1816314866' }
-  },
-  ];
+});
 
-  const container = document.getElementById('albumsContainer');
+const albums = [
+    { imgSrc: '/assets/fotos/albumnes/airbag.webp', title: 'Airbag (2004)', desc: 'El álbum debut con "La Última Vez"', bullets: ['Establecimiento en el rock argentino','Producción independiente','Base de fans inicial'], tracks: ['La Partida de la gitana - si te vas', 'Quiero estar contigo', 'Solo Aquí', 'Esperando otra ves', 'Será por ti','Dejare la ciudad', 'No me abandones', 'No puedo olvidarte', 'Salía del colegio', 'Ya no recuerdo', 'Tus ojos me engañan', 'Desesperado'], links: {spotify: 'https://open.spotify.com/album/4FtWJXF1bvQ4Q7PGbGGgMQ?si=b9Fl8uJGSYqgPM-BoURCuw'} },
+    { imgSrc: '/assets/fotos/albumnes/byn.webp', title: 'Blanco y Negro (2006)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['All Night Long', 'Amor de verano', 'Sin tu amor'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/tokyo.webp', title: 'Una Hora a Tokyo (2008)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/voragine.webp', title: 'Vorágine (2011)', desc: 'Exploración musical más profunda', bullets: ['Madurez sonora','Temas introspectivos','Reconocimiento crítico'], tracks: ['Tu Nombre', 'Donde Vas'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/liberta.webp', title: 'Libertad (2013)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/mentira.jpeg', title: 'Mentira La Verdad (2016)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['Tema 1', 'Tema 2'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/trampa.webp', title: 'Al Parecer Todo Ha Sido Una Trampa (2021)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'], links: {} },
+    { imgSrc: '/assets/fotos/albumnes/pelea.webp', title: 'El Club De La Pelea I (2025)', desc: 'El último álbum, moderno y contundente', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['No Confíes En Tu Suerte', 'Por Eso Nadie Recordará Tu Nombre', 'Extrañas Intenciones', 'Corazón Lúnatico', 'Nunca Lo Olvides', 'Anarquía en Buenos Aires', 'Verte De Cerca', 'El Hombre Puerco', 'Especial 56', 'Irme' ], links: { spotify: 'https://open.spotify.com/intl-es/album/2tS4bTMTcGhnQSFp4rmflf?si=7YIRK7OKTOCrOLIJ-AGCUQ', youtube: 'https://youtube.com/playlist?list=PLxA687tYuMWjSg-z5T1XLobZGe7BAkr--&si=p_M8UyfMGqZ4_WrF', apple: 'https://music.apple.com/ec/album/el-club-de-la-pelea-i/1816314866' } }
+];
 
-  albums.forEach((album, index) => {
+const container = document.getElementById('albumsContainer');
+
+albums.forEach((album, index) => {
     const div = document.createElement('article');
     div.className = `
       album-card p-4 rounded-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 cursor-pointer
@@ -220,55 +205,55 @@
       </button>
     `;
     container.appendChild(div);
-  });
+});
 
 function openAlbumModal(index) {
-  const album = albums[index];
-  const modal = document.getElementById('albumModal');
-  const content = document.getElementById('albumModalContent');
-  
-  content.innerHTML = `
-    <div class="text-center">
-      <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-6 w-64 h-64 object-cover rounded-xl shadow-2xl">
-      <h3 class="text-2xl font-bold text-airbag-gold mb-4">${album.title}</h3>
-      <p class="text-gray-300 mb-4">${album.desc}</p>
-      <ul class="text-gray-400 text-left list-disc list-inside mb-4">
-        ${album.tracks.map(track => `<li>${track}</li>`).join('')}
-      </ul>
-      <div class="flex justify-center gap-6 mt-4">
-        <a href="${album.links.spotify}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Spotify</a>
-        <a href="${album.links.youtube}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">YouTube</a>
-        <a href="${album.links.apple}" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Apple Music</a>
+    const album = albums[index];
+    const modal = document.getElementById('albumModal');
+    const content = document.getElementById('albumModalContent');
+
+    content.innerHTML = `
+      <div class="text-center">
+        <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-6 w-64 h-64 object-cover rounded-xl shadow-2xl">
+        <h3 class="text-2xl font-bold text-airbag-gold mb-4">${album.title}</h3>
+        <p class="text-gray-300 mb-4">${album.desc}</p>
+        <ul class="text-gray-400 text-left list-disc list-inside mb-4">
+          ${album.tracks.map(track => `<li>${track}</li>`).join('')}
+        </ul>
+        ${album.links ? `
+          <div class="flex justify-center gap-6 mt-4">
+            ${album.links.spotify ? `<a href="${album.links.spotify}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Spotify</a>` : ''}
+            ${album.links.youtube ? `<a href="${album.links.youtube}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">YouTube</a>` : ''}
+            ${album.links.apple ? `<a href="${album.links.apple}" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Apple Music</a>` : ''}
+          </div>
+        ` : ''}
       </div>
-    </div>
-  `;
-    
+    `;
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-  }
+}
 
-  function closeAlbumModal() {
+function closeAlbumModal() {
     const modal = document.getElementById('albumModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-  }
+}
 
-  function handleScrollAnimations() {
+function handleScrollAnimations() {
     const elements = document.querySelectorAll('.slide-in');
     elements.forEach(el => {
-      const elTop = el.getBoundingClientRect().top;
-      if (elTop < window.innerHeight - 150) {
-        el.classList.add('visible');
-      }
+        const elTop = el.getBoundingClientRect().top;
+        if (elTop < window.innerHeight - 150) el.classList.add('visible');
     });
-  }
+}
 
-  window.addEventListener('scroll', handleScrollAnimations);
-  handleScrollAnimations();
+window.addEventListener('scroll', handleScrollAnimations);
+handleScrollAnimations();
 
-  function scrollToSection(sectionId) {
+function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-  }
+}
 </script>
 
 </body>
