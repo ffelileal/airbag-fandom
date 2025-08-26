@@ -194,7 +194,8 @@
     { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'libertad (2013)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
     { imgSrc: '/assets/fotos/albumnes/mentira.jpeg', title: 'Mentira La Verdad (2016)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['Tema 1', 'Tema 2'] },
     { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'Al Parecer Todo Ha Sido una Trampa (2021)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'El Club De La Pelea I (2025)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['No COnfies En Tu Suerte', 'Track B'] },
+    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'El Club De La Pelea I (2025)', desc: 'El utlimo album sacado  modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['No COnfies En Tu Suerte', 'Track B'], links: { spotify: 'https://open.spotify.com/intl-es/album/2tS4bTMTcGhnQSFp4rmflf?si=7YIRK7OKTOCrOLIJ-AGCUQ', youtube: 'https://youtube.com/playlist?list=PLxA687tYuMWjSg-z5T1XLobZGe7BAkr--&si=p_M8UyfMGqZ4_WrF', apple: 'https://music.apple.com/ec/album/el-club-de-la-pelea-i/1816314866' }
+  },
   ];
 
   const container = document.getElementById('albumsContainer');
@@ -221,21 +222,26 @@
     container.appendChild(div);
   });
 
-  function openAlbumModal(index) {
-    const album = albums[index];
-    const modal = document.getElementById('albumModal');
-    const content = document.getElementById('albumModalContent');
-    
-    content.innerHTML = `
-      <div class="text-center">
-        <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-6 w-64 h-64 object-cover rounded-xl shadow-2xl">
-        <h3 class="text-2xl font-bold text-airbag-gold mb-4">${album.title}</h3>
-        <p class="text-gray-300 mb-4">${album.desc}</p>
-        <ul class="text-gray-400 text-left list-disc list-inside">
-          ${album.tracks.map(track => `<li>${track}</li>`).join('')}
-        </ul>
+function openAlbumModal(index) {
+  const album = albums[index];
+  const modal = document.getElementById('albumModal');
+  const content = document.getElementById('albumModalContent');
+  
+  content.innerHTML = `
+    <div class="text-center">
+      <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-6 w-64 h-64 object-cover rounded-xl shadow-2xl">
+      <h3 class="text-2xl font-bold text-airbag-gold mb-4">${album.title}</h3>
+      <p class="text-gray-300 mb-4">${album.desc}</p>
+      <ul class="text-gray-400 text-left list-disc list-inside mb-4">
+        ${album.tracks.map(track => `<li>${track}</li>`).join('')}
+      </ul>
+      <div class="flex justify-center gap-6 mt-4">
+        <a href="${album.links.spotify}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Spotify</a>
+        <a href="${album.links.youtube}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">YouTube</a>
+        <a href="${album.links.apple}" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">Apple Music</a>
       </div>
-    `;
+    </div>
+  `;
     
     modal.classList.remove('hidden');
     modal.classList.add('flex');

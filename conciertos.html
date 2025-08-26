@@ -83,72 +83,122 @@ body {
     text-decoration: line-through;
     opacity: 0.6;
 }
+.logo-container {
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+        }
 </style>
 
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="font-inter bg-black text-white scroll-smooth">
+    <!-- Navigation -->
+   <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+                    
+                </div>                
+                <button id="mobileMenuBtn" class="md:hidden p-2">
+                    <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+                        <div class="w-full h-0.5 bg-white"></div>
+                        <div class="w-full h-0.5 bg-white"></div>
+                        <div class="w-full h-0.5 bg-white"></div>
+                    </div>
+                </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
- <div class="container mx-auto px-6 py-4 flex justify-between items-center">
- <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
- <div class="hidden md:flex space-x-8">
-<a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
-<a href="#biografia" class="hover:text-airbag-gold transition-colors">Historia</a>
-<a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
-<a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-<a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
 
- </div>
- <button id="mobileMenu" class="md:hidden p-2">
-<div class="w-6 h-6 flex flex-col justify-center space-y-1">
- <div class="w-full h-0.5 bg-white"></div>
- <div class="w-full h-0.5 bg-white"></div>
- <div class="w-full h-0.5 bg-white"></div>
-</div>
- </button>
- </div>
-</nav>
+    <!-- Hero Section -->
+    <section 
+  id="home" 
+  class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-center bg-fixed" 
+  style="
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)),
+      url('assets/fotos/artistas/airbag.webp');
+  "
+>
+    <!-- Contenido principal -->
+    <div class="text-center z-10 slide-in">
+            <!-- Logo en lugar del texto AIRBAG -->
+            <div class="logo-container mb-6">
+                <img src="assets/fotos/artistas/logo.png" alt="AIRBAG Logo" class="logo-img">
+            </div>
+        <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">
+            Más de 20 años de rock argentino que trasciende generaciones
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center px-6">
+            <button onclick="scrollToSection('conciertos')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+                Ver Conciertos
+            </button>
+        </div>
+    </div>
 
-<section id="home" class="relative h-screen flex items-center justify-center parallax-bg" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23000%22 width=%221200%22 height=%22800%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22200%22 cy=%22200%22 r=%22100%22/><circle fill=%22%23f2c94c%22 opacity=%220.1%22 cx=%22800%22 cy=%22400%22 r=%22150%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22600%22 cy=%22600%22 r=%22120%22/></svg>')">
- <div class="text-center z-10 slide-in">
- <h1 class="text-6xl md:text-8xl font-rock text-white text-glow mb-6">AIRBAG</h1>
- <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">Más de 20 años de rock argentino que trasciende generaciones</p>
- <button onclick="scrollToSection('conciertos')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">Ver Conciertos</button>
- </div>
+    <!-- Flecha inferior -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-airbag-gold rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-airbag-gold rounded-full mt-2 animate-pulse"></div>
+        </div>
+    </div>
 </section>
 
-<section id="conciertos" class="py-20 bg-gradient-to-b from-airbag-dark to-black">
- <div class="container mx-auto px-6">
- <h2 class="text-4xl md:text-6xl font-rock text-center text-airbag-gold mb-16 slide-in">TOUR EL CLUB DE LA PELEA</h2>
- 
- <div class="flex justify-center mb-12">
-<div class="bg-gradient-to-r from-airbag-red to-airbag-gold p-8 rounded-lg text-center max-w-md w-full">
- <h3 class="text-3xl font-bold mb-4 text-black">PRÓXIMO SHOW</h3>
- <p class="text-xl text-black mb-2">Salta - Estadio Delmi</p>
- <p class="text-lg text-black/80 mb-6">28 de agosto, 2025</p>
- <div class="flex justify-center space-x-6 mb-6 text-black">
-  <div class="text-center">
-  <div id="days" class="text-3xl font-bold">--</div>
-  <div class="text-sm text-black/80">DÍAS</div>
-  </div>
-  <div class="text-center">
-  <div id="hours" class="text-3xl font-bold">--</div>
-  <div class="text-sm text-black/80">HORAS</div>
-  </div>
-  <div class="text-center">
-  <div id="minutes" class="text-3xl font-bold">--</div>
-  <div class="text-sm text-black/80">MIN</div>
-  </div>
- </div>
- <button id="buyTicketBtn" class="bg-black text-airbag-gold px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">Comprar Entradas</button>
- <p id="soldOutMsg" class="text-red-600 mt-2 hidden font-bold">¡Entradas agotadas!</p>
-</div>
- </div>
-
- <div class="grid md:grid-cols-2 gap-8" id="concertList"></div>
- </div>
-</section>
+    <!-- Conciertos Section -->
+     <section id="conciertos" class="py-20 bg-gradient-to-b from-airbag-dark to-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-rock text-center text-airbag-gold mb-16 slide-in">TOUR EL CLUB DE LA PELEA I</h2>
+            <div class="flex justify-center mb-12">
+                <div class="bg-gradient-to-r from-airbag-red to-airbag-gold p-8 rounded-lg text-center max-w-md w-full">
+                    <h3 class="text-3xl font-bold mb-4 text-black">PRÓXIMO SHOW</h3>
+                    <p class="text-xl text-black mb-2">Salta - Estadio Delmi</p>
+                    <p class="text-lg text-black/80 mb-6">28 de agosto, 2025</p>
+                    <div class="flex justify-center space-x-6 mb-6 text-black">
+                        <div class="text-center">
+                            <div id="days" class="text-3xl font-bold">--</div>
+                            <div class="text-sm text-black/80">DÍAS</div>
+                        </div>
+                        <div class="text-center">
+                            <div id="hours" class="text-3xl font-bold">--</div>
+                            <div class="text-sm text-black/80">HORAS</div>
+                        </div>
+                        <div class="text-center">
+                            <div id="minutes" class="text-3xl font-bold">--</div>
+                            <div class="text-sm text-black/80">MIN</div>
+                        </div>
+                    </div>
+                    <button id="buyTicketBtn" class="bg-black text-airbag-gold px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">Comprar Entradas</button>
+                    <p id="soldOutMsg" class="text-red-600 mt-2 hidden font-bold">¡Entradas agotadas!</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8" id="concertList"></div>
+        </div>
+    </section>
 
 <script>
     // Navigation functionality
