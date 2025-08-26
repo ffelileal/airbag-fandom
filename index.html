@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airbag - Fan Community | Rock Argentino</title>
     <meta name="description" content="Comunidad de fans de Airbag - Historia, discografía y trayectoria de la banda argentina de rock">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,100 +23,28 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .gradient-overlay {
-            background: linear-gradient(135deg, rgba(163, 34, 58, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
-        }
-        
-        .slide-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .slide-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-         .logo-container {
-            max-width: 600px;
-            margin: 0 auto 1.5rem auto;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
-        }
-        
-        .logo-img {
-            width: 100%;
-            height: auto;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(163, 34, 58, 0.3);
-        }
-        
-        .text-glow {
-            text-shadow: 0 0 20px rgba(242, 201, 76, 0.5);
-        }
-        
-        .album-card {
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-            border: 1px solid rgba(242, 201, 76, 0.2);
-        }
-        
-        .concert-marker {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        
-        .news-card {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
-            backdrop-filter: blur(10px);
-        }
-        .menu-enter {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .menu-enter-active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
 </head>
 
-<body class="font-inter bg-black text-white scroll-smooth">
-    <!-- Navigation -->
-   <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+<body class="bg-black text-white">
+<!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+                <!-- Logo nav más ajustado -->
+                <div class="flex items-center">
+                    <img src="assets/fotos/artistas/logo.png" alt="AIRBAG Logo" class="h-12 w-auto object-contain"> 
+                </div>
+
+                <!-- Links desktop -->
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
                     <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
                     <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
                     <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
-                    
-                </div>                
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
+                </div>
+
+                <!-- Botón menú móvil -->
                 <button id="mobileMenuBtn" class="md:hidden p-2">
                     <div class="w-6 h-6 flex flex-col justify-center space-y-1">
                         <div class="w-full h-0.5 bg-white"></div>
@@ -123,47 +52,49 @@
                         <div class="w-full h-0.5 bg-white"></div>
                     </div>
                 </button>
-                </div>
             </div>
-            
-            <!-- Mobile Menu -->
+
+            <!-- Menu móvil -->
             <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-800">
                 <div class="flex flex-col space-y-4 mt-4">
                     <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
                     <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
                     <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
                     <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+                    <a href="galeria.html" class="hover:text-airbag-gold transition-colors">Galería</a>
                 </div>
             </div>
         </div>
     </nav>
 
-
     <!-- Hero Section -->
     <section 
   id="home" 
-  class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-center bg-fixed" 
+  class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-fixed" 
   style="
-    background-image: 
-      linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)),
-      url('assets/fotos/artistas/airbag.webp');">
-    <!-- Contenido principal -->
-    <div class="text-center z-10 slide-in">
-            <!-- Logo en lugar del texto AIRBAG -->
-            <div class="logo-container mb-6">
-                <img src="assets/fotos/artistas/logo.png" alt="AIRBAG Logo" class="logo-img">
-            </div>
+    background-image:
+      linear-gradient(rgba(0,0,0,0.5), rgba(163,34,58,0.2)),
+      url('assets/fotos/artistas/airbag.webp');
+    background-position: center 1%; /* <-- mueve hacia arriba o abajo según necesites */
+    background-size: cover;
+  ">
+  
+  <div class="text-center z-10 slide-in">
+      <div class="logo-container mb-6">
+          <img src="assets/fotos/artistas/airbagpelea.png" alt="AIRBAG Logo" class="logo-img">
+      </div>
         <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">
             Más de 20 años de rock argentino que trasciende generaciones
         </p>
         <div class="flex flex-col md:flex-row gap-4 justify-center px-6">
-            <button onclick="scrollToSection('biografia')" class="bg-airbag-red hover:bg-red-700 px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
-                Explorar Historia
-            </button>
-            <button onclick="scrollToSection('discografia')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
-                Ver Discografía
-            </button>
+            <a href="historia.html" class="bg-airbag-gold text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+    Leer Historia
+</a>
+
+<a href="discografia.html" class="bg-airbag-red text-white px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+    Ver Discografía
+</a>
+
         </div>
     </div>
 
@@ -411,6 +342,7 @@
             </div>
         </div>
     </section>
+    
 
     <!-- Footer -->
     <footer class="bg-black py-12 border-t border-airbag-red/30">
