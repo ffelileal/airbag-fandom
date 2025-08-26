@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbag - Fan Community | Conciertos </title>
+<meta name="description" content="Comunidad de fans de Airbag - Historia, discografía y trayectoria de la banda argentina de rock">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+ theme: {
+ extend: {
+colors: {
+ 'airbag-red': '#a3223a',
+ 'airbag-gold': '#f2c94c',
+ 'airbag-dark': '#333333'
+},
+fontFamily: {
+ 'rock': ['Impact', 'Arial Black', 'sans-serif']
+}
+ }
+ }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Tipografía global */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Fondo parallax */
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Efecto de brillo en texto */
+.text-glow {
+    text-shadow: 0 0 20px rgba(242, 201, 76, 0.5);
+}
+
+/* Animación de entrada */
+.slide-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+.slide-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto hover de levantamiento */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(163, 34, 58, 0.3);
+}
+
+/* Marcador de concierto animado */
+.concert-marker {
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Conciertos pasados tachados */
+.tachado {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+</style>
+
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+<nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+ <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+ <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+ <div class="hidden md:flex space-x-8">
+<a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+<a href="#biografia" class="hover:text-airbag-gold transition-colors">Historia</a>
+<a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+<a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+<a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+
+ </div>
+ <button id="mobileMenu" class="md:hidden p-2">
+<div class="w-6 h-6 flex flex-col justify-center space-y-1">
+ <div class="w-full h-0.5 bg-white"></div>
+ <div class="w-full h-0.5 bg-white"></div>
+ <div class="w-full h-0.5 bg-white"></div>
+</div>
+ </button>
+ </div>
+</nav>
+
+<section id="home" class="relative h-screen flex items-center justify-center parallax-bg" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23000%22 width=%221200%22 height=%22800%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22200%22 cy=%22200%22 r=%22100%22/><circle fill=%22%23f2c94c%22 opacity=%220.1%22 cx=%22800%22 cy=%22400%22 r=%22150%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22600%22 cy=%22600%22 r=%22120%22/></svg>')">
+ <div class="text-center z-10 slide-in">
+ <h1 class="text-6xl md:text-8xl font-rock text-white text-glow mb-6">AIRBAG</h1>
+ <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">Más de 20 años de rock argentino que trasciende generaciones</p>
+ <button onclick="scrollToSection('conciertos')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">Ver Conciertos</button>
+ </div>
+</section>
+
+<section id="conciertos" class="py-20 bg-gradient-to-b from-airbag-dark to-black">
+ <div class="container mx-auto px-6">
+ <h2 class="text-4xl md:text-6xl font-rock text-center text-airbag-gold mb-16 slide-in">TOUR EL CLUB DE LA PELEA</h2>
+ 
+ <div class="flex justify-center mb-12">
+<div class="bg-gradient-to-r from-airbag-red to-airbag-gold p-8 rounded-lg text-center max-w-md w-full">
+ <h3 class="text-3xl font-bold mb-4 text-black">PRÓXIMO SHOW</h3>
+ <p class="text-xl text-black mb-2">Salta - Estadio Delmi</p>
+ <p class="text-lg text-black/80 mb-6">28 de agosto, 2025</p>
+ <div class="flex justify-center space-x-6 mb-6 text-black">
+  <div class="text-center">
+  <div id="days" class="text-3xl font-bold">--</div>
+  <div class="text-sm text-black/80">DÍAS</div>
+  </div>
+  <div class="text-center">
+  <div id="hours" class="text-3xl font-bold">--</div>
+  <div class="text-sm text-black/80">HORAS</div>
+  </div>
+  <div class="text-center">
+  <div id="minutes" class="text-3xl font-bold">--</div>
+  <div class="text-sm text-black/80">MIN</div>
+  </div>
+ </div>
+ <button id="buyTicketBtn" class="bg-black text-airbag-gold px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">Comprar Entradas</button>
+ <p id="soldOutMsg" class="text-red-600 mt-2 hidden font-bold">¡Entradas agotadas!</p>
+</div>
+ </div>
+
+ <div class="grid md:grid-cols-2 gap-8" id="concertList"></div>
+ </div>
+</section>
+
+<script>
+// Smooth scrolling
+function scrollToSection(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// Scroll animations
+function handleScroll() {
+ document.querySelectorAll('.slide-in').forEach(el=>{
+ if(el.getBoundingClientRect().top<window.innerHeight-150) el.classList.add('visible');
+ });
+}
+window.addEventListener('scroll', handleScroll);
+
+// Countdown
+const countdownDate = new Date("2025-08-28T21:00:00-03:00").getTime();
+setInterval(()=> {
+ const now = new Date().getTime();
+ const distance = countdownDate - now;
+ if (distance < 0) {
+        document.getElementById("days").innerText = "0";
+        document.getElementById("hours").innerText = "0";
+        document.getElementById("minutes").innerText = "0";
+        document.getElementById("soldOutMsg").classList.remove('hidden');
+        document.getElementById("buyTicketBtn").classList.add('hidden');
+    } else {
+        document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
+        document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+        document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
+        document.getElementById("soldOutMsg").classList.add('hidden');
+        document.getElementById("buyTicketBtn").classList.remove('hidden');
+    }
+},1000);
+
+// Conciertos definidos
+const concerts = [
+    {city: "Cochabamba, Bolivia", venue: "FEXCO Fest", tour: "#ElClubDeLaPelea Tour", day: "25 de abril", year: 2025, soldOut: false},
+    {city: "Buenos Aires, Argentina", venue: "Estadio de River Plate", tour: "#ElClubDeLaPelea Tour", day: "31 de mayo", year: 2025, soldOut: true},
+    {city: "Buenos Aires, Argentina", venue: "Estadio de River Plate", tour: "#ElClubDeLaPelea Tour", day: "1 de junio", year: 2025, soldOut: true},
+    {city: "Sevilla, España", venue: "Plaza de España", tour: "#ElClubDeLaPelea Tour", day: "22 de junio", year: 2025, soldOut: false},
+    {city: "Alicante, España", venue: "Multiespacio Rabasa", tour: "#ElClubDeLaPelea Tour", day: "28 de junio", year: 2025, soldOut: false},
+    {city: "Córdoba, Argentina", venue: "Plaza de la Música", tour: "#ElClubDeLaPelea Tour", day: "11 de julio", year: 2025, soldOut: true},
+    {city: "Córdoba, Argentina", venue: "Plaza de la Música", tour: "#ElClubDeLaPelea Tour", day: "12 de julio", year: 2025, soldOut: true},
+    {city: "Córdoba, Argentina", venue: "Plaza de la Música", tour: "#ElClubDeLaPelea Tour", day: "13 de julio", year: 2025, soldOut: true},
+    {city: "Rosario, Argentina", venue: "Metropolitano", tour: "#ElClubDeLaPelea Tour", day: "17 de julio", year: 2025, soldOut: false},
+    {city: "Rosario, Argentina", venue: "Metropolitano", tour: "#ElClubDeLaPelea Tour", day: "18 de julio", year: 2025, soldOut: false},
+    {city: "Montevideo, Uruguay", venue: "Antel Arena", tour: "#ElClubDeLaPelea Tour", day: "26 de julio", year: 2025, soldOut: false},
+    {city: "Montevideo, Uruguay", venue: "Antel Arena", tour: "#ElClubDeLaPelea Tour", day: "27 de julio", year: 2025, soldOut: false},
+    {city: "Mar del Plata, Argentina", venue: "Estadio Polideportivo Islas Malvinas", tour: "#ElClubDeLaPelea Tour", day: "15 de agosto", year: 2025, soldOut: false},
+    {city: "Mar del Plata, Argentina", venue: "Estadio Polideportivo Islas Malvinas", tour: "#ElClubDeLaPelea Tour", day: "16 de agosto", year: 2025, soldOut: false},
+    {city: "Mar del Plata, Argentina", venue: "Estadio Polideportivo Islas Malvinas", tour: "#ElClubDeLaPelea Tour", day: "17 de agosto", year: 2025, soldOut: false},
+    {city: "Quito, Ecuador", venue: "Ágora Casa de la Cultura", tour: "#ElClubDeLaPelea Tour", day: "21 de agosto", year: 2025, soldOut: false},
+    {city: "Bogotá, Colombia", venue: "Royal Center", tour: "#ElClubDeLaPelea Tour", day: "23 de agosto", year: 2025, soldOut: false},
+    // Próximos shows
+    {city: "Salta, Argentina", venue: "Estadio Delmi", tour: "#ElClubDeLaPelea Tour", day: "28 de agosto", year: 2025, soldOut: false},
+    {city: "Salta, Argentina", venue: "Estadio Delmi", tour: "#ElClubDeLaPelea Tour", day: "29 de agosto", year: 2025, soldOut: false},
+    {city: "Salta, Argentina", venue: "Estadio Delmi", tour: "#ElClubDeLaPelea Tour", day: "30 de agosto", year: 2025, soldOut: false},
+    {city: "Neuquén, Argentina", venue: "Estadio Ruca Che", tour: "#ElClubDeLaPelea Tour", day: "4 de septiembre", year: 2025, soldOut: false},
+    {city: "San Miguel de Tucumán, Argentina", venue: "Predio Castillo", tour: "#ElClubDeLaPelea Tour", day: "13 de septiembre", year: 2025, soldOut: false},
+    {city: "Corrientes, Argentina", venue: "Concepto Yapire", tour: "#ElClubDeLaPelea Tour", day: "19 de septiembre", year: 2025, soldOut: false},
+    {city: "San Salvador de Jujuy, Argentina", venue: "Estadio 23 de Agosto", tour: "#ElClubDeLaPelea Tour", day: "26 de septiembre", year: 2025, soldOut: false},
+    {city: "Luján de Cuyo, Mendoza, Argentina", venue: "Multiespacio Cultural", tour: "#ElClubDeLaPelea Tour", day: "27 de septiembre", year: 2025, soldOut: false},
+    {city: "Santa Fe, Argentina", venue: "Predio Estación Belgrano", tour: "#ElClubDeLaPelea Tour", day: "4 de octubre", year: 2025, soldOut: false},
+    {city: "Buenos Aires, Argentina", venue: "Estadio de River Plate", tour: "#ElClubDeLaPelea Tour", day: "5 de octubre", year: 2025, soldOut: true},
+    {city: "Asunción, Paraguay", venue: "Jockey Club", tour: "#ElClubDeLaPelea Tour", day: "11 de octubre", year: 2025, soldOut: false},
+    {city: "Barcelona, España", venue: "Sala Razzmatazz", tour: "#ElClubDeLaPelea Tour", day: "19 de octubre", year: 2025, soldOut: false},
+    {city: "Madrid, España", venue: "Plaza de Toros de Las Ventas", tour: "#ElClubDeLaPelea Tour", day: "26 de octubre", year: 2025, soldOut: false},
+    {city: "Ciudad de México, México", venue: "Teatro Metropólitan", tour: "#ElClubDeLaPelea Tour", day: "15 de noviembre", year: 2025, soldOut: false}
+];
+
+// Renderizar conciertos con tachado automático
+function renderConcerts() {
+     const list = document.getElementById('concertList');
+      list.innerHTML = '';
+ const now = new Date();
+ const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+ 
+ concerts.forEach(c => {
+ const [day, month] = c.day.split(' de ');
+ const monthIndex = monthNames.indexOf(month.toLowerCase());
+ 
+ const concertDate = new Date(c.year, monthIndex, parseInt(day));
+ const isPast = concertDate.setHours(0,0,0,0) < now.setHours(0,0,0,0);
+ 
+ const div = document.createElement('div');
+ div.className = `bg-airbag-dark/50 p-6 rounded-lg border-l-4 flex justify-between items-start hover-lift ${c.city.includes("Buenos Aires") || c.city.includes("Madrid") ? "border-airbag-red" : "border-airbag-gold"} ${isPast ? 'tachado' : ''}`;
+ 
+ div.innerHTML = `
+<div>
+ <h4 class="text-xl font-semibold text-white">${c.city}</h4>
+ <p class="text-airbag-gold">${c.venue}</p>
+ <p class="text-gray-400 text-sm">${c.tour}</p>
+</div>
+<div class="text-right">
+ <p class="text-airbag-gold font-bold">${c.day.toUpperCase()}</p>
+ <p class="text-gray-400 text-sm">${c.year}</p>
+ ${c.soldOut ? `<p class="text-red-600 font-bold mt-1">AGOTADO</p>` : ''}
+</div>
+ `;
+ list.appendChild(div);
+ });
+}
+renderConcerts();
+
+// Botón de compra (actualizado para el próximo show)
+const buyBtn = document.getElementById('buyTicketBtn');
+const soldMsg = document.getElementById('soldOutMsg');
+buyBtn.addEventListener('click', ()=>{
+    const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    const nextConcert = concerts.find(c => {
+        const [day, month] = c.day.split(' de ');
+        const monthIndex = monthNames.indexOf(month.toLowerCase());
+        const concertDate = new Date(c.year, monthIndex, parseInt(day));
+        return concertDate.setHours(0,0,0,0) >= new Date().setHours(0,0,0,0);
+    });
+    
+    if(nextConcert && nextConcert.soldOut){
+        soldMsg.classList.remove('hidden');
+    } else {
+        // Enlazar a un sitio de venta de entradas genérico o específico si se conoce
+        window.open('https://www.ticketek.com.ar', '_blank');
+    }
+});
+</script>
+</body>
+</html>
