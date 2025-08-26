@@ -25,39 +25,42 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
+
         .parallax-bg { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
-        .gradient-overlay { background: linear-gradient(135deg, rgba(163, 34, 58, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%); }
+        .gradient-overlay { background: linear-gradient(135deg, rgba(163,34,58,0.9) 0%, rgba(0,0,0,0.8) 100%); }
         .slide-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
         .slide-in.visible { opacity: 1; transform: translateY(0); }
         .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(163, 34, 58, 0.3); }
-        .text-glow { text-shadow: 0 0 20px rgba(242, 201, 76, 0.5); }
-        .album-card { background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 1px solid rgba(242, 201, 76, 0.2); }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(163,34,58,0.3); }
+        .text-glow { text-shadow: 0 0 20px rgba(242,201,76,0.5); }
+        .album-card { border: 1px solid rgba(242,201,76,0.2); }
         .concert-marker { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
-        .news-card { background: linear-gradient(135deg, rgba(51, 51, 51, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%); backdrop-filter: blur(10px); }
+        @keyframes pulse { 0%,100%{ transform: scale(1); opacity:1;} 50%{ transform: scale(1.1); opacity:0.8;} }
+        .news-card { background: linear-gradient(135deg, rgba(51,51,51,0.9) 0%, rgba(26,26,26,0.9) 100%); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white overflow-x-hidden" id="body">
 
 <!-- Navigation -->
 <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
-        <div class="hidden md:flex space-x-8">
-            <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
-            <a href="#biografia" class="hover:text-airbag-gold transition-colors">Historia</a>
-            <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
-            <a href="#conciertos" class="hover:text-airbag-gold transition-colors">Conciertos</a>
-            <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
-        </div>
-        <button id="mobileMenu" class="md:hidden p-2">
-            <div class="w-6 h-6 flex flex-col justify-center space-y-1">
-                <div class="w-full h-0.5 bg-white"></div>
-                <div class="w-full h-0.5 bg-white"></div>
-                <div class="w-full h-0.5 bg-white"></div>
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                <a href="#biografia" class="hover:text-airbag-gold transition-colors">Historia</a>
+                <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                <a href="#conciertos" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
             </div>
-        </button>
+            <button id="mobileMenu" class="md:hidden p-2">
+                <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+                    <div class="w-full h-0.5 bg-white"></div>
+                    <div class="w-full h-0.5 bg-white"></div>
+                    <div class="w-full h-0.5 bg-white"></div>
+                </div>
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -74,10 +77,11 @@
     </div>
 </section>
 
-<!-- Discografía -->
+<!-- Discografía Section -->
 <section id="discografia" class="py-20 bg-black">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl md:text-6xl font-rock text-center text-airbag-red mb-16 slide-in">DISCOGRAFÍA</h2>
+    
     <div id="albumsContainer" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       <!-- Los albums se generarán dinámicamente -->
     </div>
@@ -94,27 +98,31 @@
 
 <script>
   const albums = [
-    { imgSrc: '/assets/fotos/albumnes/mentira.jpeg', title: 'Airbag (2004)', desc: 'El álbum debut con "La Última Vez"', bullets: ['Establecimiento en el rock argentino','Producción independiente','Base de fans inicial'], gradient: 'from-airbag-red to-black', tracks: ['La Última Vez', 'A Whole New World'] },
-    { imgSrc: '/assets/fotos/albumnes/blanco_y_negro.jpg', title: 'Blanco y Negro (2006)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], gradient: 'from-gray-800 to-white', tracks: ['Tema 1', 'Tema 2'] },
-    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'Una Hora a Tokyo (2008)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], gradient: 'from-blue-900 to-purple-900', tracks: ['Track A', 'Track B'] },
-    // Agregar más discos aquí
+    { imgSrc: '/assets/fotos/albumnes/airbag.jpeg', title: 'Airbag (2004)', desc: 'El álbum debut con "La Última Vez"', bullets: ['Establecimiento en el rock argentino','Producción independiente','Base de fans inicial'], tracks: ['La Última Vez', 'A Whole New World'] },
+    { imgSrc: '/assets/fotos/albumnes/blanco_y_negro.jpg', title: 'Blanco y Negro (2006)', desc: 'Consolidación del estilo introspectivo', bullets: ['Sonido más maduro','Contrastes musicales únicos','Reconocimiento crítico'], tracks: ['Tema 1', 'Tema 2'] },
+    { imgSrc: '/assets/fotos/albumnes/una_hora_a_tokyo.jpg', title: 'Una Hora a Tokyo (2008)', desc: 'Sonidos modernos y electrónicos', bullets: ['Experimentación sonora','Influencias modernas','Éxito comercial'], tracks: ['Track A', 'Track B'] },
   ];
 
   const container = document.getElementById('albumsContainer');
 
   albums.forEach((album, index) => {
     const div = document.createElement('article');
-    div.className = 'album-card p-6 rounded-lg hover-lift slide-in cursor-pointer transition-transform duration-300';
+    div.className = `
+      album-card p-4 rounded-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 cursor-pointer
+      flex flex-col items-center bg-gradient-to-br from-black to-gray-900
+    `;
     div.innerHTML = `
-      <div class="w-full h-48 rounded-lg mb-4 overflow-hidden">
-        <img src="${album.imgSrc}" alt="${album.title}" class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+      <div class="w-full h-64 overflow-hidden rounded-xl mb-4 shadow-lg">
+        <img src="${album.imgSrc}" alt="${album.title}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
       </div>
-      <h3 class="text-xl font-bold text-airbag-gold mb-2">${album.title}</h3>
-      <p class="text-gray-300 text-sm mb-4">${album.desc}</p>
-      <div class="text-xs text-gray-400 mb-4">
-        ${album.bullets.map(b => `<p>• ${b}</p>`).join('')}
-      </div>
-      <button onclick="openAlbumModal(${index})" class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold">Ver Tracklist</button>
+      <h3 class="text-xl font-bold text-airbag-gold mb-2 text-center">${album.title}</h3>
+      <p class="text-gray-300 text-sm mb-3 text-center">${album.desc}</p>
+      <ul class="text-gray-400 text-xs mb-4 list-disc list-inside">
+        ${album.bullets.map(b => `<li>${b}</li>`).join('')}
+      </ul>
+      <button onclick="openAlbumModal(${index})" class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">
+        Ver Tracklist
+      </button>
     `;
     container.appendChild(div);
   });
@@ -126,7 +134,7 @@
     
     content.innerHTML = `
       <div class="text-center">
-        <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
+        <img src="${album.imgSrc}" alt="${album.title}" class="mx-auto mb-6 w-64 h-64 object-cover rounded-xl shadow-2xl">
         <h3 class="text-2xl font-bold text-airbag-gold mb-4">${album.title}</h3>
         <p class="text-gray-300 mb-4">${album.desc}</p>
         <ul class="text-gray-400 text-left list-disc list-inside">
@@ -145,18 +153,23 @@
     modal.classList.remove('flex');
   }
 
+  function handleScrollAnimations() {
+    const elements = document.querySelectorAll('.slide-in');
+    elements.forEach(el => {
+      const elTop = el.getBoundingClientRect().top;
+      if (elTop < window.innerHeight - 150) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScrollAnimations);
+  handleScrollAnimations();
+
   function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
   }
-
-  function handleScrollAnimations() {
-    document.querySelectorAll('.slide-in').forEach(el => {
-      const elTop = el.getBoundingClientRect().top;
-      if (elTop < window.innerHeight - 150) el.classList.add('visible');
-    });
-  }
-  window.addEventListener('scroll', handleScrollAnimations);
-  handleScrollAnimations();
 </script>
+
 </body>
 </html>
