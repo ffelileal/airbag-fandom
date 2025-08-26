@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbag - Historia Completa | Rock Argentino</title>
+    <meta name="description" content="Conoce la historia completa de Airbag, desde sus inicios en Don Torcuato hasta llenar estadios icónicos.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'airbag-red': '#a3223a',
+                        'airbag-gold': '#f2c94c',
+                        'airbag-dark': '#1a1a1a'
+                    },
+                    fontFamily: {
+                        'rock': ['Impact', 'Arial Black', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .slide-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        .slide-in.visible { opacity: 1; transform: translateY(0); }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(163, 34, 58, 0.3); }
+        .text-glow { text-shadow: 0 0 20px rgba(242, 201, 76, 0.5); }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
+            <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(163,34,58,0.5)),url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Airbag_rock_band_live.jpg') no-repeat center/cover;">
+        <div class="text-center z-10 slide-in">
+            <h1 class="text-6xl md:text-8xl font-rock text-white text-glow mb-6">AIRBAG</h1>
+            <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">
+                De un garage en Don Torcuato a llenar el Estadio de River Plate
+            </p>
+            <button onclick="document.getElementById('historia').scrollIntoView({behavior:'smooth'});" class="bg-airbag-red hover:bg-red-700 px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+                Explorar Historia
+            </button>
+        </div>
+    </section>
+
+    <!-- Historia Completa -->
+    <section id="historia" class="py-20 bg-gradient-to-b from-black to-airbag-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-rock text-center text-airbag-red mb-16 slide-in">HISTORIA COMPLETA</h2>
+            
+            <!-- Orígenes -->
+            <div class="mb-16 slide-in">
+                <h3 class="text-3xl font-bold text-airbag-gold mb-6">Los Orígenes: de “Los Nietos de Chuck” a Airbag (Años 90 – 2003)</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                    La historia de Airbag comienza en Don Torcuato, en el garage familiar donde los hermanos <strong class="text-airbag-gold">Gastón</strong> (bajo), <strong class="text-airbag-gold">Patricio</strong> (guitarra y voz) y <strong class="text-airbag-gold">Guido Sardelli</strong> (batería) ensayaban bajo el nombre “Los Nietos de Chuck”, homenajeando a Chuck Berry y otras leyendas del rock.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Sus primeros demos caseros llamaron la atención de Warner Music, asegurándoles un contrato discográfico antes de cumplir los 20 años.
+                </p>
+            </div>
+
+            <!-- Despegue -->
+            <div class="mb-16 slide-in">
+                <h3 class="text-3xl font-bold text-airbag-gold mb-6">El Despegue y el Fenómeno Airbag (2004 – 2007)</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                    En 2004 lanzan su álbum debut <em>"Airbag"</em>, grabado en Estudios ION. Con éxitos como <em>"La partida de la gitana"</em>, <em>"Quiero estar contigo"</em> y <em>"Solo aquí"</em>, alcanzaron discos de oro y platino y realizaron giras por toda Latinoamérica.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    MTV los premió como "Artista Nuevo" y Rolling Stone como "Banda Revelación". Cerraron esta etapa con dos Gran Rex agotados.
+                </p>
+            </div>
+
+            <!-- Consolidación -->
+            <div class="mb-16 slide-in">
+                <h3 class="text-3xl font-bold text-airbag-gold mb-6">Consolidación y Evolución Musical (2007 – 2011)</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                    En 2006 editan <em>"Blanco y Negro"</em>, mostrando madurez compositiva. En 2008 llega <em>"Una hora a Tokyo"</em>, nominado al Grammy Latino, y en 2011 publican <em>"Vorágine"</em>, con un sonido más introspectivo y experimental.
+                </p>
+            </div>
+
+            <!-- Estadios -->
+            <div class="mb-16 slide-in">
+                <h3 class="text-3xl font-bold text-airbag-gold mb-6">La Era de los Estadios (2012 – Presente)</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                    Con <em>"Samsara"</em> (2012) renacen musicalmente, y desde 2017 fortalecen la relación con sus fans mediante redes sociales y plataformas digitales.
+                </p>
+                <p class="text-lg leading-relaxed mb-4">
+                    Han abierto shows para Guns N’ Roses y llenado el Estadio Vélez Sarsfield en múltiples ocasiones. En 2023 celebraron 20 años con dos shows agotados en el Estadio River Plate, un hito reservado para las bandas más grandes.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Su último trabajo, <em>"El club de la pelea"</em> (2021–2024), muestra que siguen innovando con temas como “Verte de cerca”, “El hombre puerco” e “Irme lejos”.
+                </p>
+            </div>
+
+            <!-- Legado -->
+            <div class="bg-airbag-dark/50 p-8 rounded-lg border border-airbag-gold/30 slide-in">
+                <h3 class="text-3xl font-bold text-airbag-gold mb-6 text-center">Legado y Actualidad</h3>
+                <p class="text-lg leading-relaxed text-center">
+                    Airbag es hoy un símbolo del rock argentino. Tres hermanos que con talento y dedicación pasaron de un garage de Don Torcuato a los escenarios más grandes, manteniendo su esencia y una conexión única con su público.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discografía link -->
+    <section id="discografia" class="py-20 bg-black">
+        <div class="container mx-auto text-center slide-in">
+            <h2 class="text-4xl md:text-6xl font-rock text-airbag-red mb-8">DISCOGRAFÍA</h2>
+            <p class="text-lg mb-8 text-gray-300">Descubre todos los álbumes de Airbag y su evolución sonora.</p>
+            <a href="discografia.html" class="bg-airbag-gold text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">Ver Discografía Completa</a>
+        </div>
+    </section>
+
+    <script>
+        // Navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu) mobileMenu.classList.add('hidden');
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+    });
+        // Animación de aparición al hacer scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.slide-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

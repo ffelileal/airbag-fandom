@@ -52,6 +52,16 @@
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+         .logo-container {
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+        }
         
         .hover-lift:hover {
             transform: translateY(-5px);
@@ -80,55 +90,92 @@
             background: linear-gradient(135deg, rgba(51, 51, 51, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
             backdrop-filter: blur(10px);
         }
+        .menu-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden" id="body">
+
+<body class="font-inter bg-black text-white scroll-smooth">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
+   <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-airbag-red/30">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="text-2xl font-rock text-airbag-red">AIRBAG</div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-airbag-gold transition-colors">Inicio</a>
-                    <a href="#biografia" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
                     <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
                     <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
                     <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
                     
-                </div>
-                <button id="mobileMenu" class="md:hidden p-2">
+                </div>                
+                <button id="mobileMenuBtn" class="md:hidden p-2">
                     <div class="w-6 h-6 flex flex-col justify-center space-y-1">
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="w-full h-0.5 bg-white"></div>
                     </div>
                 </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="index.html" class="hover:text-airbag-gold transition-colors">Inicio</a>
+                    <a href="historia.html" class="hover:text-airbag-gold transition-colors">Historia</a>
+                    <a href="discografia.html" class="hover:text-airbag-gold transition-colors">Discografía</a>
+                    <a href="conciertos.html" class="hover:text-airbag-gold transition-colors">Conciertos</a>
+                    <a href="#galeria" class="hover:text-airbag-gold transition-colors">Galería</a>
+                </div>
             </div>
         </div>
     </nav>
 
+
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center parallax-bg" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23000%22 width=%221200%22 height=%22800%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22200%22 cy=%22200%22 r=%22100%22/><circle fill=%22%23f2c94c%22 opacity=%220.1%22 cx=%22800%22 cy=%22400%22 r=%22150%22/><circle fill=%22%23a3223a%22 opacity=%220.1%22 cx=%22600%22 cy=%22600%22 r=%22120%22/></svg>')">
-        <div class="text-center z-10 slide-in">
-            <h1 class="text-6xl md:text-8xl font-rock text-white text-glow mb-6">AIRBAG</h1>
-            <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">
-                Más de 20 años de rock argentino que trasciende generaciones
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center px-6">
-                <button onclick="scrollToSection('biografia')" class="bg-airbag-red hover:bg-red-700 px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
-                    Explorar Historia
-                </button>
-                <button onclick="scrollToSection('discografia')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
-                    Ver Discografía
-                </button>
+    <section 
+  id="home" 
+  class="relative h-screen flex items-center justify-center parallax-bg bg-cover bg-center bg-fixed" 
+  style="
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.7), rgba(163,34,58,0.3)),
+      url('assets/fotos/artistas/airbag.webp');
+  "
+>
+    <!-- Contenido principal -->
+    <div class="text-center z-10 slide-in">
+            <!-- Logo en lugar del texto AIRBAG -->
+            <div class="logo-container mb-6">
+                <img src="assets/fotos/artistas/logo.png" alt="AIRBAG Logo" class="logo-img">
             </div>
+        <p class="text-xl md:text-2xl text-airbag-gold mb-8 max-w-2xl mx-auto px-6">
+            Más de 20 años de rock argentino que trasciende generaciones
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center px-6">
+            <button onclick="scrollToSection('biografia')" class="bg-airbag-red hover:bg-red-700 px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+                Explorar Historia
+            </button>
+            <button onclick="scrollToSection('discografia')" class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold hover-lift transition-all">
+                Ver Discografía
+            </button>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="w-6 h-10 border-2 border-airbag-gold rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-airbag-gold rounded-full mt-2 animate-pulse"></div>
-            </div>
+    </div>
+
+    <!-- Flecha inferior -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-airbag-gold rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-airbag-gold rounded-full mt-2 animate-pulse"></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Biografía Section -->
     <section id="biografia" class="py-20 bg-gradient-to-b from-black to-airbag-dark">
@@ -385,41 +432,81 @@
     </footer>
 
     <script>
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth'
+    // Navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
             });
         }
-
-        // Scroll animations
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.slide-in');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+        
+        // Smooth scrolling for navigation links
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu) mobileMenu.classList.add('hidden');
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 }
             });
-        }
+        });
+    });
 
-        // Lightbox functionality
-        const lightboxImages = [
-            { emoji: '🎸', title: 'Concierto en vivo', desc: 'Energía pura sobre el escenario' },
-            { emoji: '🎤', title: 'Sesión de estudio', desc: 'Creando la magia musical' },
-            { emoji: '👥', title: 'Fans en concierto', desc: 'La pasión de la audiencia' },
-            { emoji: '🥁', title: 'Detrás del escenario', desc: 'Momentos íntimos de la banda' },
-            { emoji: '🎵', title: 'Ensayo general', desc: 'Preparando el show perfecto' },
-            { emoji: '🌟', title: 'Momento especial', desc: 'Instantes únicos e irrepetibles' }
-        ];
+    // Smooth scrolling (manual call)
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
 
-        function openLightbox(index) {
-            const lightbox = document.getElementById('lightbox');
-            const content = document.getElementById('lightboxContent');
-            const image = lightboxImages[index];
+    // Scroll animations
+    function handleScrollAnimations() {
+        const elements = document.querySelectorAll('.slide-in');
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
             
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    // Lightbox functionality
+    const lightboxImages = [
+        { emoji: '🎸', title: 'Concierto en vivo', desc: 'Energía pura sobre el escenario' },
+        { emoji: '🎤', title: 'Sesión de estudio', desc: 'Creando la magia musical' },
+        { emoji: '👥', title: 'Fans en concierto', desc: 'La pasión de la audiencia' },
+        { emoji: '🥁', title: 'Detrás del escenario', desc: 'Momentos íntimos de la banda' },
+        { emoji: '🎵', title: 'Ensayo general', desc: 'Preparando el show perfecto' },
+        { emoji: '🌟', title: 'Momento especial', desc: 'Instantes únicos e irrepetibles' }
+    ];
+
+    function openLightbox(index) {
+        const lightbox = document.getElementById('lightbox');
+        const content = document.getElementById('lightboxContent');
+        const image = lightboxImages[index];
+        
+        if (lightbox && content) {
             content.innerHTML = `
                 <div class="text-6xl mb-4">${image.emoji}</div>
                 <h3 class="text-2xl font-bold text-white mb-4">${image.title}</h3>
@@ -429,23 +516,19 @@
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
         }
+    }
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
             lightbox.classList.add('hidden');
             lightbox.classList.remove('flex');
         }
+    }
 
-        window.addEventListener('scroll', handleScrollAnimations);
+    // Lanzar animaciones en scroll
+    window.addEventListener('scroll', handleScrollAnimations);
+</script>
 
-        // Newsletter form
-        document.querySelector('button[type="button"]').addEventListener('click', function() {
-            const email = document.querySelector('input[type="email"]').value;
-            if (email) {
-                alert('¡Gracias por suscribirte! (Demo)');
-                document.querySelector('input[type="email"]').value = '';
-            }
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974e8f78d365ba77',t:'MTc1NjE2MTMwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

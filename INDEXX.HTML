@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbag - Fandom Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --airbag-red: #a3223a;
+            --airbag-gold: #ffd700;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2d2d2d;
+        }
+        
+        .font-orbitron { font-family: 'Orbitron', monospace; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .bg-airbag-red { background-color: var(--airbag-red); }
+        .text-airbag-red { color: var(--airbag-red); }
+        .text-airbag-gold { color: var(--airbag-gold); }
+        .bg-airbag-gold { background-color: var(--airbag-gold); }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--airbag-red) 0%, #000 50%, var(--dark-gray) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(163, 34, 58, 0.3);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--airbag-red);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: var(--airbag-gold);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .dark-mode {
+            background-color: var(--dark-gray);
+            color: white;
+        }
+        
+        .album-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .album-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(163, 34, 58, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .album-card:hover .album-overlay {
+            opacity: 1;
+        }
+        
+        .member-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .member-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(60%);
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover .member-info {
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--airbag-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-inter bg-black text-white scroll-smooth">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="text-2xl font-orbitron font-bold text-airbag-red">AIRBAG</div>
+                    <span class="text-airbag-gold text-sm">FANDOM OFICIAL</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link active text-white hover:text-airbag-gold">Inicio</a>
+                    <a href="#historia" class="nav-link text-white hover:text-airbag-gold">Historia</a>
+                    <a href="#integrantes" class="nav-link text-white hover:text-airbag-gold">Integrantes</a>
+                    <a href="#discografia" class="nav-link text-white hover:text-airbag-gold">Discografía</a>
+                    <a href="#shows" class="nav-link text-white hover:text-airbag-gold">Shows</a>
+                    <a href="#fandom" class="nav-link text-white hover:text-airbag-gold">Airbag Army</a>
+                    <a href="#galeria" class="nav-link text-white hover:text-airbag-gold">Galería</a>
+                    <a href="#tienda" class="nav-link text-white hover:text-airbag-gold">Tienda</a>
+                    <a href="#contacto" class="nav-link text-white hover:text-airbag-gold">Contacto</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-airbag-gold"></i>
+                    </button>
+                    <button class="md:hidden p-2 rounded-lg bg-gray-800 hover:bg-gray-700" id="mobileMenuBtn">
+                        <i class="fas fa-bars text-white"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="#inicio" class="text-white hover:text-airbag-gold">Inicio</a>
+                    <a href="#historia" class="text-white hover:text-airbag-gold">Historia</a>
+                    <a href="#integrantes" class="text-white hover:text-airbag-gold">Integrantes</a>
+                    <a href="#discografia" class="text-white hover:text-airbag-gold">Discografía</a>
+                    <a href="#shows" class="text-white hover:text-airbag-gold">Shows</a>
+                    <a href="#fandom" class="text-white hover:text-airbag-gold">Airbag Army</a>
+                    <a href="#galeria" class="text-white hover:text-airbag-gold">Galería</a>
+                    <a href="#tienda" class="text-white hover:text-airbag-gold">Tienda</a>
+                    <a href="#contacto" class="text-white hover:text-airbag-gold">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8">
+                    <h1 class="font-orbitron text-6xl md:text-8xl font-black mb-4 text-white">
+                        AIR<span class="text-airbag-red">BAG</span>
+                    </h1>
+                    <div class="text-airbag-gold text-xl md:text-2xl font-semibold mb-6">
+                        🎸 ROCK ARGENTINO DESDE 2004 🎸
+                    </div>
+                </div>
+                
+                <p class="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+                    Los hermanos <strong>Patricio</strong>, <strong>Gastón</strong> y <strong>Guido Sardelli</strong> 
+                    han conquistado el rock argentino con su sonido único que mezcla rock alternativo, 
+                    pop y experimentación sonora.
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+                    <button class="bg-airbag-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+                        <i class="fas fa-play mr-2"></i>Escuchar Ahora
+                    </button>
+                    <button class="border-2 border-airbag-gold text-airbag-gold hover:bg-airbag-gold hover:text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all">
+                        <i class="fas fa-users mr-2"></i>Únete al Airbag Army
+                    </button>
+                </div>
+                
+                <!-- Latest News -->
+                <div class="bg-black/60 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto">
+                    <h3 class="text-airbag-gold text-xl font-bold mb-4">🔥 Últimas Noticias</h3>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-airbag-red">•</span>
+                            <span>Nuevo single "Volver a Empezar" disponible en todas las plataformas</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-airbag-red">•</span>
+                            <span>Confirmados para el Cosquín Rock 2025</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-airbag-red">•</span>
+                            <span>Gira "20 Años de Rock" por toda Argentina</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia Section -->
+    <section id="historia" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                HISTORIA DE <span class="text-airbag-red">AIRBAG</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2004</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">Los Comienzos</h3>
+                                <p class="text-gray-300">Los hermanos Sardelli forman Airbag en Buenos Aires, comenzando con covers y primeras composiciones originales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2007</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">Primer Álbum - "Airbag"</h3>
+                                <p class="text-gray-300">Debut discográfico con hits como "Será por Ti" y "Nunca lo Olvides". El sonido fresco conquista la escena rock argentina.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2011</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">"Al Parecer Todo Ha Sido una Trampa"</h3>
+                                <p class="text-gray-300">Segundo álbum que consolida su estilo único. "Colombiana" se convierte en un himno generacional.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2015</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">"Una Hora a Tokyo"</h3>
+                                <p class="text-gray-300">Experimentación sonora y madurez compositiva. La banda explora nuevos territorios musicales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2018</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">"Libertad"</h3>
+                                <p class="text-gray-300">Álbum conceptual que marca un antes y después. "Rayo" y "Libertad" dominan las radios.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-gray-800 rounded-xl p-6 card-hover">
+                        <div class="flex flex-col md:flex-row items-start gap-6">
+                            <div class="text-airbag-gold font-bold text-xl">2025</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">20 Años de Rock</h3>
+                                <p class="text-gray-300">Celebrando dos décadas de música con nueva gira y material inédito. El Airbag Army más fuerte que nunca.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrantes Section -->
+    <section id="integrantes" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                LOS <span class="text-airbag-red">HERMANOS</span> SARDELLI
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Patricio -->
+                <div class="member-card bg-gray-900 h-96 relative">
+                    <div class="absolute inset-0 bg-gradient-to-b from-airbag-red/20 to-black/60"></div>
+                    <div class="absolute top-4 left-4 text-6xl">🎸</div>
+                    <div class="member-info text-white">
+                        <h3 class="text-2xl font-bold text-airbag-gold mb-2">Patricio Sardelli</h3>
+                        <p class="text-airbag-red font-semibold mb-2">Voz y Guitarra</p>
+                        <p class="text-sm text-gray-300 mb-3">El alma compositiva de Airbag. Su voz distintiva y letras profundas definen el sonido de la banda.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-airbag-red px-2 py-1 rounded text-xs">Compositor</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-xs">Líder</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gastón -->
+                <div class="member-card bg-gray-900 h-96 relative">
+                    <div class="absolute inset-0 bg-gradient-to-b from-airbag-gold/20 to-black/60"></div>
+                    <div class="absolute top-4 left-4 text-6xl">🎸</div>
+                    <div class="member-info text-white">
+                        <h3 class="text-2xl font-bold text-airbag-gold mb-2">Gastón Sardelli</h3>
+                        <p class="text-airbag-red font-semibold mb-2">Bajo y Coros</p>
+                        <p class="text-sm text-gray-300 mb-3">La base rítmica sólida. Sus líneas de bajo y armonías vocales complementan perfectamente las composiciones.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-airbag-gold text-black px-2 py-1 rounded text-xs">Bajista</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-xs">Coros</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guido -->
+                <div class="member-card bg-gray-900 h-96 relative">
+                    <div class="absolute inset-0 bg-gradient-to-b from-gray-600/20 to-black/60"></div>
+                    <div class="absolute top-4 left-4 text-6xl">🥁</div>
+                    <div class="member-info text-white">
+                        <h3 class="text-2xl font-bold text-airbag-gold mb-2">Guido Sardelli</h3>
+                        <p class="text-airbag-red font-semibold mb-2">Batería y Coros</p>
+                        <p class="text-sm text-gray-300 mb-3">La energía pura detrás de los tambores. Su estilo dinámico impulsa cada canción con potencia y precisión.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-600 px-2 py-1 rounded text-xs">Baterista</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded text-xs">Energía</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discografía Section -->
+    <section id="discografia" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                DISCO<span class="text-airbag-red">GRAFÍA</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Album 1 -->
+                <div class="album-card bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-airbag-red to-black flex items-center justify-center">
+                        <div class="text-6xl">💿</div>
+                    </div>
+                    <div class="album-overlay">
+                        <h4 class="text-white font-bold text-lg mb-2">Airbag (2007)</h4>
+                        <p class="text-center text-sm mb-4">Será por Ti • Nunca lo Olvides • Ganas de Volar</p>
+                        <button class="bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                            <i class="fas fa-play mr-2"></i>Escuchar
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white">Airbag</h4>
+                        <p class="text-gray-400 text-sm">2007 • Debut</p>
+                    </div>
+                </div>
+                
+                <!-- Album 2 -->
+                <div class="album-card bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-airbag-gold to-orange-600 flex items-center justify-center">
+                        <div class="text-6xl">🎭</div>
+                    </div>
+                    <div class="album-overlay">
+                        <h4 class="text-white font-bold text-lg mb-2">Al Parecer Todo Ha Sido una Trampa (2011)</h4>
+                        <p class="text-center text-sm mb-4">Colombiana • Amor de Verano • Diez Días</p>
+                        <button class="bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                            <i class="fas fa-play mr-2"></i>Escuchar
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white">Al Parecer Todo Ha Sido una Trampa</h4>
+                        <p class="text-gray-400 text-sm">2011 • Consolidación</p>
+                    </div>
+                </div>
+                
+                <!-- Album 3 -->
+                <div class="album-card bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-purple-600 to-blue-800 flex items-center justify-center">
+                        <div class="text-6xl">🌅</div>
+                    </div>
+                    <div class="album-overlay">
+                        <h4 class="text-white font-bold text-lg mb-2">Una Hora a Tokyo (2015)</h4>
+                        <p class="text-center text-sm mb-4">Tokyo • Campos Elíseos • Cae el Sol</p>
+                        <button class="bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                            <i class="fas fa-play mr-2"></i>Escuchar
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white">Una Hora a Tokyo</h4>
+                        <p class="text-gray-400 text-sm">2015 • Experimentación</p>
+                    </div>
+                </div>
+                
+                <!-- Album 4 -->
+                <div class="album-card bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-green-600 to-teal-800 flex items-center justify-center">
+                        <div class="text-6xl">🕊️</div>
+                    </div>
+                    <div class="album-overlay">
+                        <h4 class="text-white font-bold text-lg mb-2">Libertad (2018)</h4>
+                        <p class="text-center text-sm mb-4">Rayo • Libertad • Como un Diamante</p>
+                        <button class="bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                            <i class="fas fa-play mr-2"></i>Escuchar
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white">Libertad</h4>
+                        <p class="text-gray-400 text-sm">2018 • Madurez</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shows Section -->
+    <section id="shows" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                SHOWS Y <span class="text-airbag-red">EVENTOS</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-900 rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-airbag-gold mb-6">🎪 Próximos Conciertos</h3>
+                    <div class="space-y-4">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-800 p-4 rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-white">Cosquín Rock 2025</h4>
+                                <p class="text-gray-400">Cosquín, Córdoba</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-airbag-red font-bold">15 Feb 2025</p>
+                                <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded mt-2">Entradas</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-800 p-4 rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-white">Luna Park - 20 Años</h4>
+                                <p class="text-gray-400">Buenos Aires</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-airbag-red font-bold">28 Mar 2025</p>
+                                <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded mt-2">Entradas</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-800 p-4 rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-white">Personal Fest</h4>
+                                <p class="text-gray-400">Buenos Aires</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-airbag-red font-bold">12 Abr 2025</p>
+                                <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded mt-2">Entradas</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h4 class="text-xl font-bold text-airbag-gold mb-4">🏟️ Festivales Destacados</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Cosquín Rock (2015, 2018, 2025)</li>
+                            <li>• Personal Fest (2017, 2019, 2025)</li>
+                            <li>• Lollapalooza Argentina (2020)</li>
+                            <li>• Rock en Baradero (2016, 2021)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h4 class="text-xl font-bold text-airbag-gold mb-4">🎸 Aperturas Internacionales</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• The Killers - Buenos Aires (2018)</li>
+                            <li>• Arctic Monkeys - Córdoba (2019)</li>
+                            <li>• Foo Fighters - Mendoza (2022)</li>
+                            <li>• Red Hot Chili Peppers (2023)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fandom Section -->
+    <section id="fandom" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                AIRBAG <span class="text-airbag-red">ARMY</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-xl text-gray-300 mb-6">
+                        Únete a la comunidad de fans más apasionada del rock argentino. 
+                        Comparte tu amor por Airbag con miles de seguidores de todo el mundo.
+                    </p>
+                    <div class="flex justify-center space-x-6 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-airbag-red">50K+</div>
+                            <div class="text-gray-400">Miembros</div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-airbag-gold">200+</div>
+                            <div class="text-gray-400">Ciudades</div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-white">15</div>
+                            <div class="text-gray-400">Países</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-airbag-gold mb-6">💬 Deja tu Mensaje</h3>
+                    <form class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Tu nombre" class="bg-gray-700 text-white p-3 rounded-lg border border-gray-600 focus:border-airbag-red focus:outline-none">
+                            <input type="text" placeholder="Ciudad" class="bg-gray-700 text-white p-3 rounded-lg border border-gray-600 focus:border-airbag-red focus:outline-none">
+                        </div>
+                        <textarea placeholder="Comparte tu historia con Airbag..." rows="4" class="w-full bg-gray-700 text-white p-3 rounded-lg border border-gray-600 focus:border-airbag-red focus:outline-none"></textarea>
+                        <button type="submit" class="bg-airbag-red hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold">
+                            <i class="fas fa-heart mr-2"></i>Compartir Mensaje
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-800 rounded-xl p-6">
+                        <h4 class="text-xl font-bold text-airbag-gold mb-4">📱 Síguenos</h4>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-instagram text-pink-500"></i>
+                                <span>@airbagoficial - 500K seguidores</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-youtube text-red-500"></i>
+                                <span>Airbag Oficial - 300K suscriptores</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                <i class="fab fa-tiktok text-white"></i>
+                                <span>@airbagrock - 200K seguidores</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-xl p-6">
+                        <h4 class="text-xl font-bold text-airbag-gold mb-4">🎵 Fan Content</h4>
+                        <div class="space-y-3 text-gray-300">
+                            <div>• Covers y tributos de fans</div>
+                            <div>• Fotos de conciertos</div>
+                            <div>• Historias y experiencias</div>
+                            <div>• Arte y diseños inspirados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Section -->
+    <section id="galeria" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                GALE<span class="text-airbag-red">RÍA</span>
+            </h2>
+            
+            <div class="mb-8 flex justify-center">
+                <div class="flex space-x-4 bg-gray-900 rounded-lg p-2">
+                    <button class="gallery-filter active bg-airbag-red text-white px-4 py-2 rounded" data-filter="all">Todas</button>
+                    <button class="gallery-filter text-gray-400 hover:text-white px-4 py-2 rounded" data-filter="concerts">Conciertos</button>
+                    <button class="gallery-filter text-gray-400 hover:text-white px-4 py-2 rounded" data-filter="studio">Estudio</button>
+                    <button class="gallery-filter text-gray-400 hover:text-white px-4 py-2 rounded" data-filter="artistic">Artísticas</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                <div class="gallery-item concerts bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-airbag-red to-black flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🎤</div>
+                            <p class="font-semibold">Cosquín Rock 2018</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item studio bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-purple-600 to-blue-800 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🎧</div>
+                            <p class="font-semibold">Grabación "Libertad"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item concerts bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-airbag-gold to-orange-600 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🏟️</div>
+                            <p class="font-semibold">Luna Park 2019</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item artistic bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-green-600 to-teal-800 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">📸</div>
+                            <p class="font-semibold">Sesión Fotográfica</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item concerts bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-red-600 to-pink-800 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🎸</div>
+                            <p class="font-semibold">Personal Fest 2019</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item studio bg-gray-800 rounded-xl overflow-hidden card-hover h-64">
+                    <div class="h-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🎹</div>
+                            <p class="font-semibold">Ensayos 2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tienda Section -->
+    <section id="tienda" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                MERCHAN<span class="text-airbag-red">DISING</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-airbag-red to-black flex items-center justify-center">
+                        <div class="text-6xl">👕</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white mb-2">Remera Oficial "Libertad"</h4>
+                        <p class="text-gray-400 text-sm mb-3">100% algodón, diseño exclusivo</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-airbag-gold font-bold text-lg">$8.500</span>
+                            <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded text-sm">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-airbag-gold to-yellow-600 flex items-center justify-center">
+                        <div class="text-6xl">🧢</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white mb-2">Gorra Airbag Army</h4>
+                        <p class="text-gray-400 text-sm mb-3">Bordado premium, ajustable</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-airbag-gold font-bold text-lg">$5.200</span>
+                            <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded text-sm">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-800 flex items-center justify-center">
+                        <div class="text-6xl">💿</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white mb-2">Vinilo "Una Hora a Tokyo"</h4>
+                        <p class="text-gray-400 text-sm mb-3">Edición limitada, numerada</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-airbag-gold font-bold text-lg">$12.000</span>
+                            <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded text-sm">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-teal-800 flex items-center justify-center">
+                        <div class="text-6xl">🎸</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-white mb-2">Púa Colección Sardelli</h4>
+                        <p class="text-gray-400 text-sm mb-3">Set de 3 púas oficiales</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-airbag-gold font-bold text-lg">$1.800</span>
+                            <button class="bg-airbag-red hover:bg-red-700 text-white px-4 py-2 rounded text-sm">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-400 mb-4">Envíos a todo el país • Productos oficiales • Garantía de calidad</p>
+                <button class="bg-airbag-gold hover:bg-yellow-500 text-black px-8 py-3 rounded-lg font-bold">
+                    Ver Catálogo Completo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                CONTAC<span class="text-airbag-red">TO</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-900 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-airbag-gold mb-6">📧 Contacto Directo</h3>
+                        <form class="space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Nombre" class="bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:border-airbag-red focus:outline-none">
+                                <input type="email" placeholder="Email" class="bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:border-airbag-red focus:outline-none">
+                            </div>
+                            <select class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:border-airbag-red focus:outline-none">
+                                <option>Tipo de consulta</option>
+                                <option>Prensa</option>
+                                <option>Booking</option>
+                                <option>Fan Club</option>
+                                <option>Merchandising</option>
+                                <option>Otro</option>
+                            </select>
+                            <textarea placeholder="Tu mensaje..." rows="4" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:border-airbag-red focus:outline-none"></textarea>
+                            <button type="submit" class="w-full bg-airbag-red hover:bg-red-700 text-white py-3 rounded-lg font-semibold">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h4 class="text-xl font-bold text-airbag-gold mb-4">🌐 Redes Oficiales</h4>
+                            <div class="space-y-3">
+                                <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                    <i class="fab fa-instagram text-2xl text-pink-500"></i>
+                                    <div>
+                                        <div class="font-semibold">Instagram</div>
+                                        <div class="text-sm text-gray-400">@airbagoficial</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                    <i class="fab fa-youtube text-2xl text-red-500"></i>
+                                    <div>
+                                        <div class="font-semibold">YouTube</div>
+                                        <div class="text-sm text-gray-400">Airbag Oficial</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                    <i class="fab fa-spotify text-2xl text-green-500"></i>
+                                    <div>
+                                        <div class="font-semibold">Spotify</div>
+                                        <div class="text-sm text-gray-400">Airbag</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+                                    <i class="fab fa-tiktok text-2xl text-white"></i>
+                                    <div>
+                                        <div class="font-semibold">TikTok</div>
+                                        <div class="text-sm text-gray-400">@airbagrock</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h4 class="text-xl font-bold text-airbag-gold mb-4">📍 Management</h4>
+                            <div class="space-y-2 text-gray-300">
+                                <p><strong>Booking:</strong> booking@airbag.com.ar</p>
+                                <p><strong>Prensa:</strong> prensa@airbag.com.ar</p>
+                                <p><strong>General:</strong> info@airbag.com.ar</p>
+                                <p><strong>Merchandising:</strong> tienda@airbag.com.ar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h4 class="text-xl font-bold text-airbag-gold mb-4">🎵 Plataformas</h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-lg text-sm font-semibold">
+                                    <i class="fab fa-spotify mr-2"></i>Spotify
+                                </button>
+                                <button class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg text-sm font-semibold">
+                                    <i class="fab fa-youtube mr-2"></i>YouTube
+                                </button>
+                                <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-lg text-sm font-semibold">
+                                    <i class="fab fa-apple mr-2"></i>Apple Music
+                                </button>
+                                <button class="bg-orange-600 hover:bg-orange-700 text-white p-3 rounded-lg text-sm font-semibold">
+                                    <i class="fas fa-music mr-2"></i>Deezer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <div class="font-orbitron text-3xl font-bold text-white mb-4">
+                    AIR<span class="text-airbag-red">BAG</span>
+                </div>
+                <p class="text-gray-400 mb-6">
+                    Fandom Oficial • Desde 2004 haciendo historia en el rock argentino
+                </p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-airbag-red transition-colors">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-airbag-red transition-colors">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-airbag-red transition-colors">
+                        <i class="fab fa-spotify text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-airbag-red transition-colors">
+                        <i class="fab fa-tiktok text-2xl"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-6">
+                    <p class="text-gray-500 text-sm">
+                        © 2025 Airbag Fandom. Todos los derechos reservados. 
+                        <span class="text-airbag-gold">Hecho con ❤️ por el Airbag Army</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.add('hidden');
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(navLink => {
+                            navLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            let isDarkMode = true; // Default is dark mode
+            
+            darkModeToggle.addEventListener('click', function() {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                
+                const icon = this.querySelector('i');
+                if (isDarkMode) {
+                    icon.className = 'fas fa-moon text-airbag-gold';
+                } else {
+                    icon.className = 'fas fa-sun text-airbag-gold';
+                }
+            });
+            
+            // Gallery filter functionality
+            const galleryFilters = document.querySelectorAll('.gallery-filter');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Update active filter button
+                    galleryFilters.forEach(btn => {
+                        btn.classList.remove('active', 'bg-airbag-red', 'text-white');
+                        btn.classList.add('text-gray-400');
+                    });
+                    this.classList.add('active', 'bg-airbag-red', 'text-white');
+                    this.classList.remove('text-gray-400');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 100);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Form submissions
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show success message
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>¡Enviado!';
+                    submitBtn.classList.add('bg-green-600');
+                    submitBtn.classList.remove('bg-airbag-red');
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.classList.remove('bg-green-600');
+                        submitBtn.classList.add('bg-airbag-red');
+                        this.reset();
+                    }, 2000);
+                });
+            });
+            
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for scroll animations
+            const animatedElements = document.querySelectorAll('.card-hover, .timeline-item, .member-card, .album-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Music player simulation
+            const playButtons = document.querySelectorAll('button:contains("Escuchar")');
+            playButtons.forEach(btn => {
+                if (btn.textContent.includes('Escuchar')) {
+                    btn.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-pause mr-2"></i>Reproduciendo...';
+                        this.classList.add('bg-green-600');
+                        this.classList.remove('bg-white', 'text-black');
+                        this.classList.add('text-white');
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('bg-green-600', 'text-white');
+                            this.classList.add('bg-white', 'text-black');
+                        }, 3000);
+                    });
+                }
+            });
+            
+            // Navbar scroll effect
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('nav');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    navbar.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            navbar.style.transition = 'transform 0.3s ease';
+        });
+    </script>
+</body>
+</html>
