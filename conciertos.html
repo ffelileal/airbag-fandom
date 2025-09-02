@@ -120,6 +120,10 @@ tailwind.config = {
             <div id="minutes" class="text-3xl font-bold">--</div>
             <div class="text-sm text-black/80">MIN</div>
           </div>
+          <div class="text-center">
+            <div id="seconds" class="text-3xl font-bold">--</div>
+            <div class="text-sm text-black/80">SEG</div>
+          </div>
         </div>
 
         <button id="buyTicketBtn" 
@@ -273,6 +277,7 @@ if(nextConcert){
       document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
       document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
       document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
+      document.getElementById("seconds").innerText = Math.floor((distance%(1000*60))/1000)
       document.getElementById("soldOutMsg").classList.add('hidden');
     }
   },1000);
